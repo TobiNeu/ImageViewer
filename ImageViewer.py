@@ -46,10 +46,17 @@ class ImageViewer(QMainWindow):
     def show_image(self):
         try:
             pixmap = QPixmap(self.directory + '/'+ self.listFiles.currentItem().text())
-            if pixmap.width() > 1000:
-                pixmap = pixmap.scaledToWidth(1000)
+            if pixmap.width() > pixmap.height():
+                if pixmap.width() > 1080:
+                    pixmap = pixmap.scaledToWidth(1080)
+                else:
+                    pixmap = pixmap.scaledToWidth(pixmap.width())
             else:
-                pixmap = pixmap.scaledToWidth(pixmap.width())
+                if pixmap.height() > 720:
+                    pixmap = pixmap.scaledToHeight(720)
+                else:
+                    pixmap = pixmap.scaledToHeight(pixmap.height())
+
             self.imageView.setPixmap(pixmap)
             if not self.fixSize.isChecked():
                 self.resize(pixmap.size())
