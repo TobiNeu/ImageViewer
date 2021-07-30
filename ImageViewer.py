@@ -47,13 +47,13 @@ class ImageViewer(QMainWindow):
         try:
             pixmap = QPixmap(self.directory + '/'+ self.listFiles.currentItem().text())
             if pixmap.width() > pixmap.height():
-                if pixmap.width() > 1080:
-                    pixmap = pixmap.scaledToWidth(1080)
+                if pixmap.width() > 1000:
+                    pixmap = pixmap.scaledToWidth(1000)
                 else:
                     pixmap = pixmap.scaledToWidth(pixmap.width())
             else:
-                if pixmap.height() > 720:
-                    pixmap = pixmap.scaledToHeight(720)
+                if pixmap.height() > 700:
+                    pixmap = pixmap.scaledToHeight(700)
                 else:
                     pixmap = pixmap.scaledToHeight(pixmap.height())
 
