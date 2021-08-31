@@ -24,7 +24,7 @@ class ImageViewer(QMainWindow):
         self.listFiles.currentItemChanged.connect(self.show_image)
 
     def open_directory(self):
-        tmp_directory = str(QFileDialog.getExistingDirectory(self, 'Select Directory'))
+        tmp_directory = str(QFileDialog.getExistingDirectory(self, 'Select Directory', os.path.expanduser("~")))
         self.lineInput.setText(tmp_directory)
 
     def make_filelist(self):
@@ -37,7 +37,7 @@ class ImageViewer(QMainWindow):
         files += glob.glob(self.directory + '/*.jpeg')
         files += glob.glob(self.directory + '/*.gif')
 
-        files = sorted(files)
+        files.sort(key = lambda x: x.lower())
 
         for i in range(len(files)):
             self.listFiles.insertItem(i, os.path.basename(files[i]))
